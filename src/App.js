@@ -24,7 +24,7 @@ class App extends Component {
   }
   
   adicionarComentario = evento => {
-    evento.preventDefault();
+    evento.preventDefault()
     const novoComentario = {
       nome: '',
       email: '',
@@ -38,6 +38,12 @@ class App extends Component {
       }],
       novoComentario: novoComentario
     })
+  }
+
+  removerComentario = comentario => {
+    let lista = this.state.comentarios
+    lista = lista.filter(c => c !== comentario)
+    this.setState({ comentarios: lista })
   }
 
   onChangeFormulario = evento => {
@@ -56,12 +62,13 @@ class App extends Component {
             key={index}
             nome={comentario.nome} 
             email={comentario.email} 
-            data={comentario.data}>
+            data={comentario.data}
+            onRemove={this.removerComentario.bind(this, comentario)}>
             {comentario.mensagem}
           </Comentario>
         ))}
 
-        <form method="post" onSubmit={this.adicionarComentario}>
+        <form method="post" onSubmit={this.adicionarComentario} className="formComentario">
           <h2>Adicionar comentario</h2>
           <div>
             <input 
@@ -69,6 +76,7 @@ class App extends Component {
               name="nome" 
               value={this.state.novoComentario.nome}
               onChange={this.onChangeFormulario}
+              required
               placeholder="Digite seu nome"/>
           </div>
           <div>
@@ -77,6 +85,7 @@ class App extends Component {
               name="email"
               value={this.state.novoComentario.email} 
               onChange={this.onChangeFormulario}
+              required
               placeholder="Digite seu email"/>
           </div>
           <div>
@@ -84,6 +93,7 @@ class App extends Component {
               name="mensagem" 
               value={this.state.novoComentario.mensagem}
               onChange={this.onChangeFormulario}
+              required
               rows="4"/>
           </div>
           <button 
