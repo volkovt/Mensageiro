@@ -1,6 +1,10 @@
 import React from 'react';
+import { formatRelative } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
+
 import './Comentario.css'
 import imagemUsuario from './user.png';
+
 
 // JSX
 const Comentario = props => {
@@ -17,7 +21,7 @@ const Comentario = props => {
                 class="mensagem">{props.children}
             </div>
             <div 
-                class="data">{props.data}
+                class="data">{formatRelative(props.data, new Date(), { locale: ptBR })}
             </div>
             <button 
                 onClick={props.onRemove}>&times;

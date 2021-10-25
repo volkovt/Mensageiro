@@ -7,13 +7,13 @@ class App extends Component {
     comentarios: [{
       nome: 'João',
       email: 'joao@email.com',
-      data: new Date(2020, 3, 19).toLocaleDateString(),
+      data: new Date(2020, 3, 18, 12, 34, 0),
       mensagem: 'Olá, tudo bem'
     },
     {
       nome: 'Maria',
       email: 'Maria@email.com',
-      data: new Date(2020, 3, 19).toLocaleDateString(),
+      data: new Date(2020, 3, 18, 12, 50, 0),
       mensagem: 'Estou sim e você?'
     }],
     novoComentario: {
@@ -34,7 +34,7 @@ class App extends Component {
     this.setState ({
       comentarios: [...this.state.comentarios, { 
         ...this.state.novoComentario, 
-        data: new Date().toLocaleDateString(),
+        data: new Date(),
       }],
       novoComentario: novoComentario
     })
